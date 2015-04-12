@@ -1,4 +1,7 @@
-package pl.konczak.morsecode;
+package pl.konczak.morsecodetranslator;
+
+import pl.konczak.morsecodetranslator.MorseCodeTranslator;
+import pl.konczak.morsecodetranslator.IMorseCodeTranslator;
 
 import org.junit.After;
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
-package pl.konczak.morsecode;
+package pl.konczak.morsecodetranslator;
 
 public class MorseCodeTranslator
         implements IMorseCodeTranslator {
