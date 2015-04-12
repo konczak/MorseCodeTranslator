@@ -1,8 +1,5 @@
 package pl.konczak.morsecodetranslator;
 
-import pl.konczak.morsecodetranslator.MorseCodeTranslator;
-import pl.konczak.morsecodetranslator.IMorseCodeTranslator;
-
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -78,9 +75,69 @@ public class IMorseCodeTranslatorTest {
     }
 
     @Test
+    public void shouldReturnMorseCodeInEncodeFromDigits() {
+        //given
+        String input = "0123456789";
+
+        //when
+        String result = morseCodeTranslator.encode(input);
+
+        //then
+        assertEquals("----- .---- ..--- ...-- ....- ..... -.... --... ---.. ----.", result);
+    }
+
+    @Test
+    public void shouldReturnMorseCodeInEncodeFromAlphabet() {
+        //given
+        String input = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        //when
+        String result = morseCodeTranslator.encode(input);
+
+        //then
+        assertEquals(".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --.. .- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..", result);
+    }
+
+    @Test
     public void shouldReturnEmptyResultInEncodeWhenInputIsEmpty() {
         //given
         String input = "";
+
+        //when
+        String result = morseCodeTranslator.encode(input);
+
+        //then
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void shouldReturnEmptyResultInEncodeWhenInputIsSingleSpace() {
+        //given
+        String input = " ";
+
+        //when
+        String result = morseCodeTranslator.encode(input);
+
+        //then
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void shouldReturnEmptyResultInEncodeWhenInputIsDoubleSpace() {
+        //given
+        String input = "  ";
+
+        //when
+        String result = morseCodeTranslator.encode(input);
+
+        //then
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void shouldReturnEmptyResultInEncodeWhenInputContainsOnlySpaces() {
+        //given
+        String input = "                                ";
 
         //when
         String result = morseCodeTranslator.encode(input);
@@ -146,6 +203,30 @@ public class IMorseCodeTranslatorTest {
         assertEquals("what are you going to do on atp?", result);
     }
 
+    @Test
+    public void shouldReturnEnglishTextInDecodeToDigits() {
+        //given
+        String input = "----- .---- ..--- ...-- ....- ..... -.... --... ---.. ----.";
+
+        //when
+        String result = morseCodeTranslator.decode(input);
+
+        //then
+        assertEquals("0123456789", result);
+    }
+
+    @Test
+    public void shouldReturnEnglishTextInDecodeToAlphabet() {
+        //given
+        String input = ".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..";
+
+        //when
+        String result = morseCodeTranslator.decode(input);
+
+        //then
+        assertEquals("abcdefghijklmnopqrstuvwxyz", result);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowIlegalArgumentExceptionInDecodeWhenInputIsNull() {
         //given
@@ -169,4 +250,39 @@ public class IMorseCodeTranslatorTest {
         assertTrue(result.isEmpty());
     }
 
+    @Test
+    public void shouldReturnEmptyResultInDecodeWhenInputIsSingleSpace() {
+        //given
+        String input = " ";
+
+        //when
+        String result = morseCodeTranslator.decode(input);
+
+        //then
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void shouldReturnEmptyResultInDecodeWhenInputIsDoubleSpace() {
+        //given
+        String input = "  ";
+
+        //when
+        String result = morseCodeTranslator.decode(input);
+
+        //then
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void shouldReturnEmptyResultInDecodeWhenInputContainsOnlySpaces() {
+        //given
+        String input = "                                ";
+
+        //when
+        String result = morseCodeTranslator.decode(input);
+
+        //then
+        assertTrue(result.isEmpty());
+    }
 }

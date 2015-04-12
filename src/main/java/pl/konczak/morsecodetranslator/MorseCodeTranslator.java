@@ -4,7 +4,7 @@ public class MorseCodeTranslator
         implements IMorseCodeTranslator {
 
     private final String[] morseCodeArray = {"--..--", ".-.-.-", "..--..", "-----",
-        ".----", "..---", "...---", "....-", ".....", "-....", "--...",
+        ".----", "..---", "...--", "....-", ".....", "-....", "--...",
         "---..", "----.", ".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
         "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.",
         "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--",
@@ -17,10 +17,10 @@ public class MorseCodeTranslator
         if (english == null) {
             throw new IllegalArgumentException("Input english text to encode can not be null");
         }
+        english = english.toLowerCase().trim();
         if (english.isEmpty()) {
             return "";
         }
-        english = english.toLowerCase();
         String[] words = english.split(" ");
 
         StringBuilder morseCode = new StringBuilder();
@@ -56,6 +56,7 @@ public class MorseCodeTranslator
         if (morseCode == null) {
             throw new IllegalArgumentException("Input MorseCode to decode can not be null");
         }
+        morseCode = morseCode.trim();
         if (morseCode.isEmpty()) {
             return "";
         }
