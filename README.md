@@ -2,4 +2,4 @@
 
 Clone this projects as usual.
 
-Build it using Maven: _mvn install_
+Build it using Maven: __mvn install__
